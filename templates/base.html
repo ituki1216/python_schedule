@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スケジュール管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl">スケジュール管理</h1>
+            <div class="flex space-x-4">
+                <a href="https://employment.en-japan.com/" target="_blank" class="text-white hover:text-gray-400">エン転職</a>
+                <a href="https://www.green-japan.com/" target="_blank" class="text-white hover:text-gray-400">Green</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto py-8">
+        <h2 class="text-2xl mb-4">スケジュール一覧</h2>
+        <ul>
+            {% for schedule in schedules %}
+            <li class="mb-2">
+                <strong>{{ schedule.title }}</strong> - {{ schedule.date }} {{ schedule.time }} <br>
+                <a href="/edit/{{ schedule.id }}" class="text-blue-500">編集</a> | 
+                <a href="/delete/{{ schedule.id }}" class="text-red-500">削除</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <hr class="my-4">
+        <form action="/add" method="POST">
+            <h3 class="text-xl mb-2">スケジュール追加</h3>
+            <input type="text" name="title" placeholder="タイトル" class="border p-2 mb-2 w-full" required>
+            <input type="date" name="date" class="border p-2 mb-2 w-full" required>
+            <input type="time" name="time" class="border p-2 mb-2 w-full" required>
+            <textarea name="description" placeholder="詳細" class="border p-2 mb-2 w-full"></textarea>
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">追加</button>
+        </form>
+    </div>
+</body>
+</html>

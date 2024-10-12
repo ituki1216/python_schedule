@@ -1,0 +1,26 @@
+<html lang="ja"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スケジュール編集</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl">スケジュール編集</h1>
+        </div>
+    </header>
+
+    <div class="container mx-auto py-8">
+        <h2 class="text-2xl mb-4">スケジュール編集</h2>
+        <form action="/edit/{{ schedule.id }}" method="POST">
+            <input type="text" name="title" value="{{ schedule.title }}" class="border p-2 mb-2 w-full" required>
+            <input type="date" name="date" value="{{ schedule.date }}" class="border p-2 mb-2 w-full" required>
+            <input type="time" name="time" value="{{ schedule.time }}" class="border p-2 mb-2 w-full" required>
+            <textarea name="description" class="border p-2 mb-2 w-full">{{ schedule.description }}</textarea>
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">更新</button>
+        </form>
+    </div>
+</body>
+</html>
